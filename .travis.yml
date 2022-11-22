@@ -1,0 +1,16 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t mikeriver/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true mikeriver/react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t mikeriver/multi-container-app/client ./client
+  - docker build -t mikeriver/multi-container-app/nginx ./nginx
+  - docker build -t mikeriver/multi-container-app/server ./server
+  - docker build -t mikeriver/multi-container-app/worker ./worker
