@@ -10,12 +10,12 @@ script:
   - docker run -e CI=true mikeriver/react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t mikeriver/multi-container-app/client ./client
-  - docker build -t mikeriver/multi-container-app/nginx ./nginx
-  - docker build -t mikeriver/multi-container-app/server ./server
-  - docker build -t mikeriver/multi-container-app/worker ./worker
+  - docker build -t mikeriver/client ./client
+  - docker build -t mikeriver/nginx ./nginx
+  - docker build -t mikeriver/server ./server
+  - docker build -t mikeriver/worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push mikeriver/client:latest
-  - docker push mikeriver/nginx:latest
-  - docker push mikeriver/server:latest
-  - docker push mikeriver/worker:latest
+  - docker push mikeriver/client
+  - docker push mikeriver/nginx
+  - docker push mikeriver/server
+  - docker push mikeriver/worker
