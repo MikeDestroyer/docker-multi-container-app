@@ -14,3 +14,8 @@ after_success:
   - docker build -t mikeriver/multi-container-app/nginx ./nginx
   - docker build -t mikeriver/multi-container-app/server ./server
   - docker build -t mikeriver/multi-container-app/worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push mikeriver/multi-container-app/client
+  - docker push mikeriver/multi-container-app/nginx
+  - docker push mikeriver/multi-container-app/server
+  - docker push mikeriver/multi-container-app/worker
