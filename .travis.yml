@@ -19,3 +19,27 @@ after_success:
   - docker push mikeriver/nginx
   - docker push mikeriver/server
   - docker push mikeriver/worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-110737947154"
+  bucket_path: "docker-multi"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  skip_cleanup: true
+
+#deploy:
+#  provider: elasticbeanstalk
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key_id: $AWS_SECRET_KEY
+#  region: "eu-central-1"
+#  app: "docker-react"
+#  env: "Dockerreact-env"
+#  bucket_name: "elasticbeanstalk-eu-central-1-110737947154"
+#  bucket_path: "docker-react"
+#  on:
+#    branch: main
+#  skip_cleanup: true
