@@ -11,6 +11,10 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <h4>Oh, the weather outside is frightful!</h4>
+          <h4>But the fire is so delightful</h4>
+          <h4>And since we've no place to go</h4>
+          <h4>Let it snow! Let it snow! Let it snow!</h4>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
         </header>
